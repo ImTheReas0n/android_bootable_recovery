@@ -112,7 +112,8 @@ void DataManager::get_device_id(void) {
 #ifdef TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID
 	// Use (product_model)_(hardware_id) as device id
 	char model_id[PROPERTY_VALUE_MAX];
-	property_get("ro.product.model", model_id, "error");
+	// changed to serialno to get proper ADB ID
+	property_get("ro.serialno", model_id, "error");
 	if (strcmp(model_id, "error") != 0) {
 		LOGINFO("=> product model: '%s'\n", model_id);
 		// Replace spaces with underscores
